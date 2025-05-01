@@ -1,0 +1,11 @@
+awswrangler
+black
+invoke
+memory-profiler
+pandas
+pdfplumber
+pip-tools
+pylint
+python-dotenv
+selenium
+webdriver-manager

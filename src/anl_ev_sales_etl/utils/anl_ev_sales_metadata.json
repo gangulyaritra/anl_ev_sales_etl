@@ -1,0 +1,58 @@
+{
+    "0": {
+        "Product_Code": "BEV",
+        "description": "US battery electric vehicle monthly sales ",
+        "series_id": "bev",
+        "source": "Argonne National Laboratory (ANL)",
+        "country": "United States",
+        "energy_product": "transport",
+        "region": "NA",
+        "unit": "number_of",
+        "frequency": "monthly",
+        "lifecycle_stage": "actual",
+        "economic_property": "outages",
+        "energy_product_subtype": "electric_vehicles"
+    },
+    "1": {
+        "Product_Code": "PHEV",
+        "description": "US plug-in hybrid electric vehicle monthly sales ",
+        "series_id": "phev",
+        "source": "Argonne National Laboratory (ANL)",
+        "country": "United States",
+        "energy_product": "transport",
+        "region": "NA",
+        "unit": "number_of",
+        "frequency": "monthly",
+        "lifecycle_stage": "actual",
+        "economic_property": "demand",
+        "energy_product_subtype": "electric_vehicles"
+    },
+    "2": {
+        "Product_Code": "HEV",
+        "description": "US hybrid electric vehicle monthly sales",
+        "series_id": "hev",
+        "source": "Argonne National Laboratory (ANL)",
+        "country": "United States",
+        "energy_product": "transport",
+        "region": "NA",
+        "unit": "number_of",
+        "frequency": "monthly",
+        "lifecycle_stage": "actual",
+        "economic_property": "demand",
+        "energy_product_subtype": "electric_vehicles"
+    },
+    "3": {
+        "Product_Code": "TotalLDV",
+        "description": "US light-duty vehcile monthly sales",
+        "series_id": "totalldv",
+        "source": "Argonne National Laboratory (ANL)",
+        "country": "United States",
+        "energy_product": "transport",
+        "region": "NA",
+        "unit": "number_of",
+        "frequency": "monthly",
+        "lifecycle_stage": "actual",
+        "economic_property": "demand",
+        "energy_product_subtype": "electric_vehicles"
+    }
+}

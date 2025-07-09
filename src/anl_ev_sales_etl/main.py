@@ -24,7 +24,7 @@ class EVMonthlySalesETL(DataExtractor):
 
     @staticmethod
     def selenium_url_extraction(driver, url: str) -> str:
-        xpath = "/html/body/div[2]/div/div/header/div/div/div/div/a"
+        xpath = "/html/body/div[2]/div/div[2]/div[2]/div[2]/main/div[1]/div/div/div/a"
         driver.get(url)
 
         while not is_page_loaded(driver=driver, xpath=xpath):

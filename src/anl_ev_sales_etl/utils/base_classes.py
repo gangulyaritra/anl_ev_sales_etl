@@ -62,6 +62,7 @@ class DataExtractor:
         self.logger.info("DataFrame Uploaded to S3 Successfully.")
 
     def etl(self):
+        """Runs the ETL Pipeline."""
         try:
             self.extract()
         except Exception as err:

@@ -7,7 +7,7 @@ import pandas as pd
 from anl_ev_sales_etl.utils.selenium_tools import Selenium
 
 DOWNLOAD_PATH = os.path.join(os.getenv("DOWNLOAD_DIR", os.getcwd()), "ev_sales")
-S3_BUCKET_NAME = os.getenv("S3_BUCKET_NAME", "anl-us-vehicle-sales")
+S3_BUCKET_NAME = os.getenv("S3_BUCKET_NAME", "anl-us-ev-sales")
 
 ANL_METADATA = pd.read_json(
     Path(__file__).parent / "anl_ev_sales_metadata.json", orient="index"
@@ -41,14 +41,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--environment",
         help="Which environment to run the project in?",
-        default="tests",
-        choices=["tests", "prod"],
+        default="uat",
+        choices=["uat", "prod"],
     )
 
     args, _ = parser.parse_known_args()
 
     pfx = "anl\\us_vehicle_sales"
-    args.sj_prefix = pfx if args.environment == "prod" else f"tests\\{pfx}"
+    args.sj_prefix = pfx if args.environment == "prod" else f"uat\\{pfx}"
 
     return args
 

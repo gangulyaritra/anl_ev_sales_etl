@@ -39,7 +39,7 @@ def lint(ctx, path="src"):
     Lint project files.
     """
     ctx.run("pylint --generate-rcfile > .pylintrc", warn=True)
-    ctx.run(f"pylint --fail-under=8.5 --rcfile=.pylintrc {path}")
+    ctx.run(f"pylint --fail-under=9.0 --rcfile=.pylintrc {path}")
 
 
 @task(

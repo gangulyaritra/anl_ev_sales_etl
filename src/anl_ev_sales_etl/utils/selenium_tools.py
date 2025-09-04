@@ -32,11 +32,11 @@ class Selenium:
         Generates Chrome options for the Selenium driver.
 
         Args:
-            downloads_path: Directory to save downloads.
-            headless: Whether to run the driver in headless mode.
+            downloads_path: Directory to save files downloaded through Selenium.
+            headless: Whether the driver should operate in headless mode.
 
         Keyword Args:
-            ignore_cert_errors: If True, ignores SSL errors.
+            ignore_cert_errors: If True, ignore SSL certificate errors.
             user_agent: Sets a custom user agent.
             host: Additional host argument.
             prefs: A dictionary with additional Chrome preferences.

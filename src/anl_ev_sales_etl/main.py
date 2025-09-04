@@ -20,10 +20,15 @@ class EVMonthlySalesETL(DataExtractor):
     URL = "https://www.anl.gov/esia/reference/light-duty-electric-drive-vehicles-monthly-sales-updates-historical-data"
 
     COLS = ["date", "BEV", "PHEV", "HEV", "TotalLDV"]
-    ASPECTS = ["BEV", "PHEV", "HEV", "TotalLDV"]
 
     @staticmethod
     def selenium_url_extraction(driver, url: str) -> str:
+        """
+        Extracts the URL of the PDF file from the webpage using Selenium.
+        :param driver: Selenium WebDriver instance.
+        :param url: The URL of the webpage to scrape.
+        :return: The URL of the PDF file.
+        """
         xpath = "/html/body/div[2]/div/div[2]/div[2]/div[2]/main/div[1]/div/div/div/a"
         driver.get(url)
 
@@ -37,6 +42,11 @@ class EVMonthlySalesETL(DataExtractor):
 
     @staticmethod
     def extract_tables_from_pdf(pdf_path: str):
+        """
+        Extracts tables from a PDF file and returns them as a DataFrame.
+        :param pdf_path: Path to the PDF file.
+        :return: A DataFrame containing the extracted data.
+        """
         dataframes = []
         combined_df = pd.DataFrame()
 
@@ -89,8 +99,8 @@ class EVMonthlySalesETL(DataExtractor):
         df = df.apply(lambda col: col.map(convert_value))
         df.loc[:, "date"] = df["date"].apply(convert_month)
         df["date"] = pd.to_datetime(df["date"])
-        df[EVMonthlySalesETL.ASPECTS] = (
-            df[EVMonthlySalesETL.ASPECTS]
+        df[EVMonthlySalesETL.COLS[1:]] = (
+            df[EVMonthlySalesETL.COLS[1:]]
             .apply(pd.to_numeric, errors="coerce")
             .astype(int)
         )
@@ -98,7 +108,7 @@ class EVMonthlySalesETL(DataExtractor):
         melted_df = pd.melt(
             df,
             id_vars=["date"],
-            value_vars=EVMonthlySalesETL.ASPECTS,
+            value_vars=EVMonthlySalesETL.COLS[1:],
             var_name="series_id",
             value_name="value",
         )

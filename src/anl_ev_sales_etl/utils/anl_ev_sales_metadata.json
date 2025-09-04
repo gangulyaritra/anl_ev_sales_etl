@@ -6,10 +6,8 @@
         "source": "Argonne National Laboratory (ANL)",
         "country": "United States",
         "energy_product": "transport",
-        "region": "NA",
         "unit": "number_of",
         "frequency": "monthly",
-        "lifecycle_stage": "actual",
         "economic_property": "outages",
         "energy_product_subtype": "electric_vehicles"
     },
@@ -20,10 +18,8 @@
         "source": "Argonne National Laboratory (ANL)",
         "country": "United States",
         "energy_product": "transport",
-        "region": "NA",
         "unit": "number_of",
         "frequency": "monthly",
-        "lifecycle_stage": "actual",
         "economic_property": "demand",
         "energy_product_subtype": "electric_vehicles"
     },
@@ -34,10 +30,8 @@
         "source": "Argonne National Laboratory (ANL)",
         "country": "United States",
         "energy_product": "transport",
-        "region": "NA",
         "unit": "number_of",
         "frequency": "monthly",
-        "lifecycle_stage": "actual",
         "economic_property": "demand",
         "energy_product_subtype": "electric_vehicles"
     },
@@ -48,10 +42,8 @@
         "source": "Argonne National Laboratory (ANL)",
         "country": "United States",
         "energy_product": "transport",
-        "region": "NA",
         "unit": "number_of",
         "frequency": "monthly",
-        "lifecycle_stage": "actual",
         "economic_property": "demand",
         "energy_product_subtype": "electric_vehicles"
     }

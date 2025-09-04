@@ -1,13 +1,13 @@
 FROM python:3.11.12-slim-bullseye
 
-LABEL maintainer="aritraganguly.in@protonmail.com"
+LABEL maintainer="ganguly.aritra@outlook.com"
 
 RUN pip3 install pip --upgrade
 
 # Install Git and other applicable packages.
 RUN apt-get update && apt-get install git chromium wget unzip gcc python-dev curl gnupg -y
 
-# Installing `xvfb` is required for headless Chrome; it's the virtual screen.
+# Installing `xvfb` is required for headless Chrome; it provides a virtual screen.
 RUN apt-get update && apt-get install -y python3-tk python3-dev xvfb && apt upgrade -y
 RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 RUN apt-get install -y ./google-chrome-stable_current_amd64.deb

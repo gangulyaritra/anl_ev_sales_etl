@@ -10,6 +10,7 @@ on:
 permissions:
   id-token: write
   contents: read
+  actions: read
 
 jobs:
   continuous-integration:
@@ -88,3 +89,50 @@ jobs:
           docker build --cache-from $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           # Push the new image to ECR.
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+  export-logs-to-s3:
+    name: Archive Workflow Logs to S3
+    needs:
+      - continuous-integration
+      - build-and-push-ecr-image
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install AWS CLI
+        run: sudo apt-get update && sudo apt-get install -y awscli jq
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Download Workflow Logs (ZIP)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.run_id }}
+          REPO: ${{ github.repository }}
+        run: |
+          curl -sSL -H "Authorization: Bearer $GH_TOKEN" \
+            "https://api.github.com/repos/$REPO/actions/runs/$RUN_ID/logs" -o logs.zip
+          if [ ! -s logs.zip ]; then
+            echo "No logs.zip content downloaded."
+            exit 1
+          fi
+
+      - name: Upload Logs to S3
+        env:
+          S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+          WORKFLOW: ${{ github.workflow }}
+          RUN_ID: ${{ github.run_id }}
+          RUN_NUMBER: ${{ github.run_number }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+          BRANCH: ${{ github.ref_name }}
+          SHA: ${{ github.sha }}
+        run: |
+          TS=$(date -u +'%Y-%m-%dT%H-%M-%SZ')
+          KEY="github-actions-logs/$WORKFLOW/branch=$BRANCH/run=$RUN_NUMBER-attempt=$RUN_ATTEMPT/$TS-${SHA:0:12}-runid=$RUN_ID.zip"
+          echo "Uploading logs to s3://$S3_BUCKET_NAME/$KEY"
+          aws s3 cp logs.zip "s3://$S3_BUCKET_NAME/$KEY" --only-show-errors
+  

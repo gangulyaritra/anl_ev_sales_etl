@@ -99,7 +99,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install AWS CLI
-        run: sudo apt-get update && sudo apt-get install -y awscli jq
+        uses: aws-actions/setup-aws-cli@v2
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1-node16

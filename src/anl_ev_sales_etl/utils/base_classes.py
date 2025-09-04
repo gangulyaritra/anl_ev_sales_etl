@@ -17,7 +17,7 @@ from anl_ev_sales_etl.utils import (
 class BaseVariables:
     arguments = parsed_args
     environment = arguments.environment
-    prefix = arguments.sj_prefix
+    prefix = arguments.etl_prefix
     download_path = DOWNLOAD_PATH
 
 
@@ -81,3 +81,4 @@ class DataExtractor:
             raise RuntimeError(f"Scraper failed at Upload. Error was {err}") from err
         finally:
             shutil.rmtree(self.base_variables.download_path)
+

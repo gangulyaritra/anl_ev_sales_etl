@@ -1,7 +1,7 @@
 {
     "0": {
         "Product_Code": "BEV",
-        "description": "US battery electric vehicle monthly sales ",
+        "description": "US battery electric vehicle monthly sales",
         "series_id": "bev",
         "source": "Argonne National Laboratory (ANL)",
         "country": "United States",
@@ -13,7 +13,7 @@
     },
     "1": {
         "Product_Code": "PHEV",
-        "description": "US plug-in hybrid electric vehicle monthly sales ",
+        "description": "US plug-in hybrid electric vehicle monthly sales",
         "series_id": "phev",
         "source": "Argonne National Laboratory (ANL)",
         "country": "United States",

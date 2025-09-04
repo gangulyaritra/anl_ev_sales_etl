@@ -50,8 +50,8 @@ S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
 
 #### Step 2: Setup AWS S3 & ECR to store artifacts and Docker images.
 
-- **AWS S3 to store project artifacts and log files.**
-- **AWS ECR to store Docker images.**
+- `AmazonS3FullAccess`: **AWS S3 to store project artifacts and log files.**
+- `AmazonEC2ContainerRegistryFullAccess`: **AWS ECR to store Docker images.**
 
 #### Step 3: Manual Steps to Run the Application in a Local System.
 

@@ -48,9 +48,10 @@ def parse_args() -> argparse.Namespace:
     args, _ = parser.parse_known_args()
 
     pfx = "anl\\us_vehicle_sales"
-    args.sj_prefix = pfx if args.environment == "prod" else f"uat\\{pfx}"
+    args.etl_prefix = pfx if args.environment == "prod" else f"uat\\{pfx}"
 
     return args
 
 
 parsed_args = parse_args()
+
